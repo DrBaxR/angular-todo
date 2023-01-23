@@ -1,0 +1,12 @@
+<div *ngIf="todo"
+     class="wrapper">
+  <h3 class="title">
+    {{todo.title}}
+  </h3>
+  <div class="due-date">
+    {{todo.dueDate | date}}
+  </div>
+  <div class="description">
+    {{todo.description}}
+  </div>
+</div>

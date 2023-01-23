@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Todo } from './model/todo.model';
 import { TodosService } from './services/todos.service';
 
 @Component({
@@ -9,9 +11,11 @@ import { TodosService } from './services/todos.service';
 export class AppComponent implements OnInit {
   title = 'angular-todo';
 
+  todos$?: Observable<Todo[]>;
+
   constructor(private todosService: TodosService) {}
 
   ngOnInit(): void {
-    this.todosService.getAll().subscribe(todos => console.log(todos));
+    this.todos$ = this.todosService.getAll();
   }
 }
