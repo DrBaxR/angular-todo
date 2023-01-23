@@ -1,27 +1,46 @@
-# AngularTodo
+# TODOs
+A simple todo list Angular application, meant to showcase some of the basic features of Angular.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.2.
+## Project setup
+This section contains a list of things that you need to do before getting started.
 
-## Development server
+### Pull repository locally
+The first thing you need to do is install Git on your machine. You can get it [here](https://git-scm.com/downloads).
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+In order to get the project on your local machine you first need to **pull** this repository. To do that, you need to run the following command in a terminal:
 
-## Code scaffolding
+```sh
+git pull https://github.com/DrBaxR/angular-todo.git
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Install [Node](https://nodejs.org/en/about/) & [Angular CLI](https://angular.io/cli)
+There are a couple of things that you will need to install before being able to run the project that you pulled from GitHub.
 
-## Build
+First off, you will need to install NodeJS from [here](https://nodejs.org/en/). Once you're done with that, you should be able to run the following command and get an output with the version you have installed (something like `v16.19.0`).
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```sh
+node --version
+```
 
-## Running unit tests
+You should also be able to run `npm --version` and get a version number (different from the `node` version). After that, you can run:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```sh
+npm install -g @angular/cli
+```
 
-## Running end-to-end tests
+To install the Angular CLI. By doing so, you should now be able to run `ng --version`.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Run the project
+After being able to run the ```npm``` command, you can finally get the project running. To do so, you need to first open a terminal in the folder where you cloned the project, or navigate to it in a terminal:
 
-## Further help
+```sh
+cd angular-todo
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+After that you need to install the dependencies required for the project:
+
+```sh
+npm install
+```
+
+And finally, you can start the application by running the following command and opening `http://localhost:4200` in a browser.
