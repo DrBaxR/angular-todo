@@ -10,4 +10,5 @@ export class TodoCardComponent {
   @Input() todo?: Todo;
 
   @Output() delete = new EventEmitter<number>()
+  @Output() edit = new EventEmitter<number>()
 }

@@ -7,10 +7,12 @@
       </button>
       <span>: {{themeService.dark ? 'Dark' : 'Light'}}</span>
     </div>
-    <h1 class="title">TODOs</h1>
+    <div class="title-wrapper">
+      <h1 class="title">TODOs</h1>
+      <button class="create-button" (click)="createTodo()">+</button>
+    </div>
   </div>
   <app-todo-list [todos]="todos$ | async"
                  (todoDelete)="todosService.delete($event)">
   </app-todo-list>
 </div>
-

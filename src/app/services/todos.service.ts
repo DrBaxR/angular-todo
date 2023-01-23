@@ -41,4 +41,12 @@ export class TodosService {
     this.data = this.data.filter(todo => todo.id != id);
     this.todosSubject.next(this.data);
   }
+
+  update(newValue: Todo) {
+    // TODO: overwrite todo with 'newValue'
+  }
+
+  create(todo: Todo)  {
+    // TODO: create new todo
+  }
 }

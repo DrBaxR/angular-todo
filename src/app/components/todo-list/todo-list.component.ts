@@ -10,4 +10,10 @@ export class TodoListComponent {
   @Input() todos!: Todo[] | null;
 
   @Output() todoDelete = new EventEmitter<number>();
+
+  constructor() {}
+
+  handleEdit(id: number) {
+    console.log('navigate');
+  }
 }

@@ -14,5 +14,14 @@
     .theme-button {
       margin-bottom: 0.5rem;
     }
+
+    .title-wrapper {
+      display: flex;
+      align-items: center;
+
+      .create-button {
+        margin-left: 0.5rem;
+      }
+    }
   }
 }

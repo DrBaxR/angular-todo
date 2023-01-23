@@ -4,7 +4,16 @@
     <h3 class="title">
       {{todo.title}}
     </h3>
-    <button class="button" (click)="delete.emit(todo.id)">Delete</button>
+    <div class="buttons-wrapper">
+      <button class="button"
+              (click)="edit.emit(todo.id)">
+        Edit
+      </button>
+      <button class="button"
+              (click)="delete.emit(todo.id)">
+        Delete
+      </button>
+    </div>
   </div>
   <div class="due-date">
     {{todo.dueDate | date}}
