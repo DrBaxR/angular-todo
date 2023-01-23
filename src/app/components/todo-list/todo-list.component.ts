@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { Todo } from 'src/app/model/todo.model';
 
 @Component({
@@ -11,9 +12,9 @@ export class TodoListComponent {
 
   @Output() todoDelete = new EventEmitter<number>();
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   handleEdit(id: number) {
-    console.log('navigate');
+    this.router.navigate(['edit', id]);
   }
 }
