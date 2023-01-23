@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ThemeService {
+  // TODO: make theme be remembered between sessions
   dark: boolean = false;
 
   constructor() { }

@@ -2,7 +2,7 @@
   <div class="title-container">
     <div>
       <button class="theme-button"
-              (click)="toggleTheme()">
+              (click)="themeService.toggleTheme();">
         Theme
       </button>
       <span>: {{themeService.dark ? 'Dark' : 'Light'}}</span>
@@ -10,6 +10,6 @@
     <h1 class="title">TODOs</h1>
   </div>
   <app-todo-list [todos]="todos$ | async"
-                 (todoDelete)="handleDelete($event)">
+                 (todoDelete)="todosService.delete($event)">
   </app-todo-list>
 </div>

@@ -14,20 +14,12 @@ export class AppComponent implements OnInit {
   todos$?: Observable<Todo[]>;
 
   constructor(
-    private todosService: TodosService,
+    public todosService: TodosService,
     public themeService: ThemeService,
   ) {}
 
   ngOnInit(): void {
     this.todos$ = this.todosService.todos$;
     this.todosService.getAll();
-  }
-
-  handleDelete(id: number) {
-    this.todosService.delete(id);
-  }
-
-  toggleTheme() {
-    this.themeService.toggleTheme();
   }
 }
