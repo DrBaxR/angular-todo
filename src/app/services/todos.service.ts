@@ -29,7 +29,7 @@ export class TodosService {
   ]
 
   private todosSubject: BehaviorSubject<Todo[]> = new BehaviorSubject<Todo[]>([]);
-  todos$: Observable<Todo[]> = this.todosSubject.asObservable();
+  todos$: Observable<Todo[]> = this.todosSubject.asObservable().pipe(delay(500));
 
   constructor() { }
 

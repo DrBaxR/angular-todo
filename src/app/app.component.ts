@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, switchMap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Todo } from './model/todo.model';
+import { ThemeService } from './services/theme.service';
 import { TodosService } from './services/todos.service';
 
 @Component({
@@ -10,10 +11,12 @@ import { TodosService } from './services/todos.service';
 })
 export class AppComponent implements OnInit {
   title = 'angular-todo';
-
   todos$?: Observable<Todo[]>;
 
-  constructor(private todosService: TodosService) {}
+  constructor(
+    private todosService: TodosService,
+    public themeService: ThemeService,
+  ) {}
 
   ngOnInit(): void {
     this.todos$ = this.todosService.todos$;
@@ -22,5 +25,9 @@ export class AppComponent implements OnInit {
 
   handleDelete(id: number) {
     this.todosService.delete(id);
+  }
+
+  toggleTheme() {
+    this.themeService.toggleTheme();
   }
 }

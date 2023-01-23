@@ -4,4 +4,15 @@
   flex-direction: column;
   align-items: center;
   padding: 20px 0;
+  color: var(--on-primary);
+
+  .title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .theme-button {
+      margin-bottom: 0.5rem;
+    }
+  }
 }

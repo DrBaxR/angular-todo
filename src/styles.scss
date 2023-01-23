@@ -3,10 +3,20 @@
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
   --primary: white;
+  --on-primary: black;
   --secondary: lightgray;
   --on-secondary: black;
   --on-secondary-light: rgb(61, 61, 61);
   --shadow: rgb(107, 107, 107);
+}
+
+.dark {
+  --primary: rgb(29, 29, 29);
+  --on-primary: white;
+  --secondary: rgb(61, 61, 61);
+  --on-secondary: white;
+  --on-secondary-light: rgb(185, 185, 185);
+  --shadow: black;
 }
 
 body {

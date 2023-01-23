@@ -1,5 +1,14 @@
 <div class="wrapper">
-  <h1 class="title">TODOs</h1>
+  <div class="title-container">
+    <div>
+      <button class="theme-button"
+              (click)="toggleTheme()">
+        Theme
+      </button>
+      <span>: {{themeService.dark ? 'Dark' : 'Light'}}</span>
+    </div>
+    <h1 class="title">TODOs</h1>
+  </div>
   <app-todo-list [todos]="todos$ | async"
                  (todoDelete)="handleDelete($event)">
   </app-todo-list>
