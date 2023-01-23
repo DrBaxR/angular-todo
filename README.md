@@ -30,7 +30,7 @@ npm install -g @angular/cli
 
 To install the Angular CLI. By doing so, you should now be able to run `ng --version`.
 
-### Run the project
+## Run the project
 After being able to run the ```npm``` command, you can finally get the project running. To do so, you need to first open a terminal in the folder where you cloned the project, or navigate to it in a terminal:
 
 ```sh
