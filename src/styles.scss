@@ -1,13 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
+  --primary: white;
+  --secondary: lightgray;
+  --on-secondary: black;
+  --on-secondary-light: rgb(61, 61, 61);
+  --shadow: rgb(107, 107, 107);
 }
 
 body {
   margin: 0 !important;
   height: 100vh;
+  background-color: var(--primary);
 }
 
 h1 {
   margin: 0;
+}
+
+.mtb-05 {
+  margin: 0.5rem;
 }
