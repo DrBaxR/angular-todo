@@ -1,6 +1,7 @@
 <div class="wrapper">
   <app-todo-card *ngFor="let todo of todos"
+                 class="mtb-05"
                  [todo]="todo"
-                 class="mtb-05">
+                 (delete)="todoDelete.emit($event)">
   </app-todo-card>
 </div>

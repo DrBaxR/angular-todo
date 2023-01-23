@@ -1,4 +1,6 @@
 <div class="wrapper">
   <h1 class="title">TODOs</h1>
-  <app-todo-list [todos]="todos$ | async"></app-todo-list>
+  <app-todo-list [todos]="todos$ | async"
+                 (todoDelete)="handleDelete($event)">
+  </app-todo-list>
 </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 import { Todo } from './model/todo.model';
 import { TodosService } from './services/todos.service';
 
@@ -16,6 +16,11 @@ export class AppComponent implements OnInit {
   constructor(private todosService: TodosService) {}
 
   ngOnInit(): void {
-    this.todos$ = this.todosService.getAll();
+    this.todos$ = this.todosService.todos$;
+    this.todosService.getAll();
+  }
+
+  handleDelete(id: number) {
+    this.todosService.delete(id);
   }
 }

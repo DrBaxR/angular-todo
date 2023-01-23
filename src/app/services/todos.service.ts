@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { delay, Observable, of } from 'rxjs';
+import { BehaviorSubject, delay, Observable, of } from 'rxjs';
 import { Todo } from '../model/todo.model';
 
 @Injectable({
@@ -28,9 +28,17 @@ export class TodosService {
     },
   ]
 
+  private todosSubject: BehaviorSubject<Todo[]> = new BehaviorSubject<Todo[]>([]);
+  todos$: Observable<Todo[]> = this.todosSubject.asObservable();
+
   constructor() { }
 
-  getAll(): Observable<Todo[]> {
-    return of(this.data).pipe(delay(1000));
+  getAll() {
+    this.todosSubject.next(this.data);
+  }
+
+  delete(id: number) {
+    this.data = this.data.filter(todo => todo.id != id);
+    this.todosSubject.next(this.data);
   }
 }

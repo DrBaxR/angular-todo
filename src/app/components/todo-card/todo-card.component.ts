@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Todo } from 'src/app/model/todo.model';
 
 @Component({
@@ -8,4 +8,6 @@ import { Todo } from 'src/app/model/todo.model';
 })
 export class TodoCardComponent {
   @Input() todo?: Todo;
+
+  @Output() delete = new EventEmitter<number>()
 }

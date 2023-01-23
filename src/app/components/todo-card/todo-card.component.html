@@ -1,8 +1,11 @@
 <div *ngIf="todo"
      class="wrapper">
-  <h3 class="title">
-    {{todo.title}}
-  </h3>
+  <div class="title-wrapper">
+    <h3 class="title">
+      {{todo.title}}
+    </h3>
+    <button class="button" (click)="delete.emit(todo.id)">Delete</button>
+  </div>
   <div class="due-date">
     {{todo.dueDate | date}}
   </div>
