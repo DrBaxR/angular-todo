@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, delay, Observable, of } from 'rxjs';
+import { data } from '../model/todo.mock';
 import { Todo } from '../model/todo.model';
 
 @Injectable({
@@ -7,26 +8,7 @@ import { Todo } from '../model/todo.model';
 })
 export class TodosService {
 
-  private data: Todo[] = [
-    {
-      id: 1,
-      dueDate: new Date(),
-      title: 'Workshop Angular',
-      description: 'Concept for an introductory Angular workshop',
-    },
-    {
-      id: 2,
-      dueDate: new Date(),
-      title: 'Mock data',
-      description: 'Make the mock data that the project will use',
-    },
-    {
-      id: 3,
-      dueDate: new Date(),
-      title: 'Components',
-      description: 'Implement the components of the TODO list web app',
-    },
-  ]
+  private data = data;
 
   private todosSubject: BehaviorSubject<Todo[]> = new BehaviorSubject<Todo[]>([]);
   todos$: Observable<Todo[]> = this.todosSubject.asObservable().pipe(delay(500));

@@ -1,24 +1,29 @@
 <div *ngIf="todo"
      class="wrapper">
   <div class="title-wrapper">
-    <h3 class="title">
+    <h3 class="title"
+        data-cy="title">
       {{todo.title}}
     </h3>
     <div class="buttons-wrapper">
       <button class="button"
+              data-cy="edit-button"
               (click)="edit.emit(todo.id)">
         Edit
       </button>
       <button class="button"
+              data-cy="delete-button"
               (click)="delete.emit(todo.id)">
         Delete
       </button>
     </div>
   </div>
-  <div class="due-date">
+  <div class="due-date"
+       data-cy="due-date">
     {{todo.dueDate | date}}
   </div>
-  <div class="description">
+  <div class="description"
+       data-cy="description">
     {{todo.description}}
   </div>
 </div>
