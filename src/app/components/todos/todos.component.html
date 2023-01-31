@@ -1,12 +1,6 @@
 <div class="wrapper">
   <div class="title-container">
-    <div>
-      <button class="theme-button"
-              (click)="themeService.toggleTheme();">
-        Theme
-      </button>
-      <span>: {{themeService.dark ? 'Dark' : 'Light'}}</span>
-    </div>
+    <app-theme class="theme-button"></app-theme>
     <div class="title-wrapper">
       <h1 class="title">TODOs</h1>
       <button class="create-button"

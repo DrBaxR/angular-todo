@@ -1,0 +1,8 @@
+<div class="wrapper">
+  <button class="theme-button"
+          data-cy="theme-button"
+          (click)="themeService.toggleTheme();">
+    Theme
+  </button>
+  <span data-cy="theme">: {{themeService.dark ? 'Dark' : 'Light'}}</span>
+</div>
