@@ -16,7 +16,6 @@ export class TodosComponent implements OnInit {
 
   constructor(
     public todosService: TodosService,
-    public themeService: ThemeService,
     private router: Router
   ) {}
 
