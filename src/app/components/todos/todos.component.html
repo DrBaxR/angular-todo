@@ -9,11 +9,17 @@
     </div>
     <div class="title-wrapper">
       <h1 class="title">TODOs</h1>
-      <button class="create-button" (click)="createTodo()">+</button>
+      <button class="create-button"
+              (click)="createTodo()">+</button>
     </div>
   </div>
-  <app-todo-list [todos]="todos$ | async"
-                 (todoDelete)="todosService.delete($event)"
-                 (todoEdit)="handleEdit($event)">
-  </app-todo-list>
+  <div class="todos-wrapper">
+    <app-todo-card *ngFor="let todo of todos$ | async"
+                   class="mtb-05"
+                   data-cy="card"
+                   [todo]="todo"
+                   (delete)="todosService.delete($event)"
+                   (edit)="handleEdit($event)">
+    </app-todo-card>
+  </div>
 </div>
