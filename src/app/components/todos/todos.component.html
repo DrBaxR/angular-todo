@@ -13,6 +13,7 @@
     </div>
   </div>
   <app-todo-list [todos]="todos$ | async"
-                 (todoDelete)="todosService.delete($event)">
+                 (todoDelete)="todosService.delete($event)"
+                 (todoEdit)="handleEdit($event)">
   </app-todo-list>
 </div>

@@ -11,10 +11,7 @@ export class TodoListComponent {
   @Input() todos!: Todo[] | null;
 
   @Output() todoDelete = new EventEmitter<number>();
+  @Output() todoEdit = new EventEmitter<number>();
 
-  constructor(private router: Router) {}
-
-  handleEdit(id: number) {
-    this.router.navigate(['edit', id]);
-  }
+  constructor() {}
 }
