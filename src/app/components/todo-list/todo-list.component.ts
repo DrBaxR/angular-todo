@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Todo } from 'src/app/model/todo.model';
+import { TodosService } from 'src/app/services/todos.service';
 
 @Component({
   selector: 'app-todo-list',
@@ -10,11 +11,13 @@ import { Todo } from 'src/app/model/todo.model';
 export class TodoListComponent {
   @Input() todos!: Todo[] | null;
 
-  @Output() todoDelete = new EventEmitter<number>();
+  @Output() todoEdit = new EventEmitter<number>();
 
-  constructor(private router: Router) {}
+  constructor(
+    private todoService: TodosService
+  ) { }
 
-  handleEdit(id: number) {
-    this.router.navigate(['edit', id]);
+  deleteTodo(id: number) {
+    this.todoService.delete(id);
   }
 }

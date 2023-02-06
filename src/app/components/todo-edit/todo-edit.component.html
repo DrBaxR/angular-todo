@@ -1,0 +1,6 @@
+<div class="wrapper">
+  <h1>Edit Todo:</h1>
+  <app-todo-form [initialTodo]="todo$ | async"
+                 (formSubmit)="handleFormEdit($event)">
+  </app-todo-form>
+</div>

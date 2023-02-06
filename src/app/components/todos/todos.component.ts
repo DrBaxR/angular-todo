@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Todo } from 'src/app/model/todo.model';
 import { ThemeService } from 'src/app/services/theme.service';
@@ -16,11 +17,16 @@ export class TodosComponent implements OnInit {
   constructor(
     public todosService: TodosService,
     public themeService: ThemeService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.todos$ = this.todosService.todos$;
     this.todosService.getAll();
+  }
+
+  handleEdit(id: number) {
+    this.router.navigate(["edit", id]);
   }
 
   createTodo() {

@@ -43,7 +43,9 @@ export class TodosService {
   }
 
   update(newValue: Todo) {
-    // TODO: overwrite todo with 'newValue'
+    const otherTodos = this.data.filter(todo => todo.id != newValue.id);
+    this.data = [newValue, ...otherTodos];
+    this.todosSubject.next(this.data);
   }
 
   create(todo: Todo)  {
