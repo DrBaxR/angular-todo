@@ -30,7 +30,6 @@ export class TodosComponent implements OnInit {
   }
 
   createTodo() {
-    // TODO: creation flow: this can be either showing a form on the same page as the todo entries OR reusing the edit page
-    console.log('Implement me!');
+    this.router.navigate(['create']);
   }
 }

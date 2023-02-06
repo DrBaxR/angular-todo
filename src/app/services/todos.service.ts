@@ -48,7 +48,12 @@ export class TodosService {
     this.todosSubject.next(this.data);
   }
 
-  create(todo: Todo)  {
-    // TODO: create new todo
+  create(todo: Todo) {
+    let nextId = 0;
+    this.data.forEach(todo => { if (todo.id > nextId) { nextId = todo.id } });
+    todo.id = nextId + 1;
+
+    this.data.push(todo);
+    this.todosSubject.next(this.data);
   }
 }

@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { TodoEditComponent } from './components/todo-edit/todo-edit.component';
 import { TodoFormComponent } from './components/todo-form/todo-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TodoCreateComponent } from './components/todo-create/todo-create.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     TodoCardComponent,
     TodosComponent,
     TodoEditComponent,
-    TodoFormComponent
+    TodoFormComponent,
+    TodoCreateComponent
   ],
   imports: [
     BrowserModule,
