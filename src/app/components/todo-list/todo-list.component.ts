@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Router } from '@angular/router';
 import { Todo } from 'src/app/model/todo.model';
 import { TodosService } from 'src/app/services/todos.service';
 
