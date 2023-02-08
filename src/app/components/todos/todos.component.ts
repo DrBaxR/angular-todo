@@ -17,7 +17,7 @@ export class TodosComponent implements OnInit {
   constructor(
     public todosService: TodosService,
     public themeService: ThemeService,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit(): void {

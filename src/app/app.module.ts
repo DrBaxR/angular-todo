@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { InjectionToken, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -10,6 +10,10 @@ import { TodoEditComponent } from './components/todo-edit/todo-edit.component';
 import { TodoFormComponent } from './components/todo-form/todo-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TodoCreateComponent } from './components/todo-create/todo-create.component';
+import { environment } from 'src/environments/environment';
+import { HttpClientModule } from '@angular/common/http';
+
+export const BASE_URL = new InjectionToken<string>('BaseUrl');
 
 @NgModule({
   declarations: [
@@ -25,8 +29,11 @@ import { TodoCreateComponent } from './components/todo-create/todo-create.compon
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    { provide: BASE_URL, useValue: environment.baseUrl }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
