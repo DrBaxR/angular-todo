@@ -20,6 +20,13 @@ describe('TodoFormComponent', () => {
     imports: [ReactiveFormsModule]
   });
 
+  const todo: Todo = {
+    id: 1,
+    title: 'test title',
+    dueDate: new Date(2023, 0, 1),
+    description: 'test description'
+  };
+
   beforeEach(() => { spectator = createComponent() });
 
   it('mounts', () => {
@@ -38,13 +45,6 @@ describe('TodoFormComponent', () => {
   });
 
   it('populates fields with properties of input todo item', () => {
-    const todo: Todo = {
-      id: 1,
-      title: 'test title',
-      dueDate: new Date(2023, 0, 1),
-      description: 'test description'
-    };
-
     spectator.setInput({ initialTodo: todo });
 
     const titleField = spectator.query(byTestId('title-input'));
@@ -58,14 +58,7 @@ describe('TodoFormComponent', () => {
   });
 
   it('emits event on submit button click', () => {
-    const todo: Todo = {
-      id: 1,
-      title: 'test title',
-      dueDate: new Date(2023, 0, 1),
-      description: 'test description'
-    };
     let actualTodo: Todo | undefined;
-
     spectator.component.formSubmit.subscribe(todo => actualTodo = todo);
 
     spectator.setInput({ initialTodo: todo });
@@ -75,4 +68,16 @@ describe('TodoFormComponent', () => {
     expect(actualTodo?.title).toBe(todo.title);
     expect(datesEqual(actualTodo?.dueDate, todo.dueDate)).toBeTruthy();
   });
+
+  it('emits changed value after fields changed', () => {
+    let actualTodo: Todo | undefined;
+    spectator.component.formSubmit.subscribe(todo => actualTodo = todo);
+    
+    const newTitle = 'other title';
+    spectator.setInput({ initialTodo: todo });
+    spectator.typeInElement(newTitle, byTestId('title-input'));
+    spectator.click(byTestId('submit-button'));
+
+    expect(actualTodo?.title).toBe(newTitle);
+  })
 });
