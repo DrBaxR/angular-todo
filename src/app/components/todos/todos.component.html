@@ -2,6 +2,7 @@
   <div class="title-container">
     <div>
       <button class="theme-button"
+              data-testid="theme-button"
               (click)="themeService.toggleTheme();">
         Theme
       </button>
@@ -9,7 +10,9 @@
     </div>
     <div class="title-wrapper">
       <h1 class="title">TODOs</h1>
-      <button class="create-button" (click)="createTodo()">+</button>
+      <button class="create-button"
+              data-testid="create-button"
+              (click)="createTodo()">+</button>
     </div>
   </div>
   <app-todo-list [todos]="todos$ | async"
