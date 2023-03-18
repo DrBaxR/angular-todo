@@ -9,6 +9,6 @@ import { Todo } from 'src/app/model/todo.model';
 export class TodoCardComponent {
   @Input() todo?: Todo;
 
-  @Output() delete = new EventEmitter<number>()
+  @Output() delete = new EventEmitter<string>()
   @Output() edit = new EventEmitter<number>()
 }

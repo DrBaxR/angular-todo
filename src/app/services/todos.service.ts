@@ -1,34 +1,33 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, delay, Observable, of } from 'rxjs';
-import { data } from '../model/todo.mock';
-import { Todo } from '../model/todo.model';
+import { Todo, TodoCreate } from '../model/todo.model';
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodosService {
+  private baseUrl = 'http://localhost:5051/api/v1/todo';
 
-  private data = data;
-
-  private todosSubject: BehaviorSubject<Todo[]> = new BehaviorSubject<Todo[]>([]);
-  todos$: Observable<Todo[]> = this.todosSubject.asObservable().pipe(delay(0));
-
-  constructor() { }
-
-  getAll() {
-    this.todosSubject.next(this.data);
+  constructor(private httpClient: HttpClient) {
   }
 
-  delete(id: number) {
-    this.data = this.data.filter(todo => todo.id != id);
-    this.todosSubject.next(this.data);
+  getAll() {
+    return this.httpClient.get<Todo[]>(`${this.baseUrl}`);
+  }
+
+  delete(title: string) {
+    return this.httpClient.delete<Todo>(`${this.baseUrl}/delete`, {
+      params: {
+        title: title
+      }
+    });
   }
 
   update(newValue: Todo) {
     // TODO: overwrite todo with 'newValue'
   }
 
-  create(todo: Todo)  {
-    // TODO: create new todo
+  create(todo: TodoCreate) {
+    return this.httpClient.post<number>(`${this.baseUrl}/create`, todo);
   }
 }

@@ -4,16 +4,30 @@
     <div class="title-wrapper">
       <h1 class="title">TODOs</h1>
       <button class="create-button"
-              (click)="createTodo()">+</button>
+              (click)="createTodo()">+
+      </button>
     </div>
   </div>
+
+  <app-error-message [text]="errorMessage"></app-error-message>
+
   <div class="todos-wrapper">
-    <app-todo-card *ngFor="let todo of todos$ | async"
+    <app-todo-card *ngFor="let todo of todos"
                    class="mtb-05"
                    data-cy="card"
                    [todo]="todo"
-                   (delete)="todosService.delete($event)"
+                   (delete)="handleDelete($event)"
                    (edit)="handleEdit($event)">
     </app-todo-card>
+
+    <div *ngIf="!todos.length">
+      <p>You have no TODOs yet. Create one!</p>
+    </div>
   </div>
 </div>
+
+
+<app-create-todo *ngIf="showCreateForm" (cancel)="handleCreateCancel()" (create)="handleCreate($event)"></app-create-todo>
+
+<br/>
+<a href="/login">Go To Login page</a>

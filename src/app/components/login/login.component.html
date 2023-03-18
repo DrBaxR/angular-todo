@@ -1,0 +1,29 @@
+<h1>Login</h1>
+
+<div>
+
+  <input type="text" placeholder="Username" [(ngModel)]="username">
+
+  <input type="password" placeholder="Password" [(ngModel)]="password">
+
+  <ng-container *ngIf="isLoggedIn()">
+    <button (click)="onLogout()">LOGOUT</button>
+  </ng-container>
+  <ng-container *ngIf="!isLoggedIn()">
+    <button (click)="onLogin()">LOGIN</button>
+  </ng-container>
+
+
+  <ng-container *ngIf="inProgress">
+    <span>Executing...</span>
+  </ng-container>
+
+  <app-error-message [text]="errorMessage"></app-error-message>
+
+  <div *ngIf="isLoggedIn()">
+    Welcome {{loggedInUsername}}
+  </div>
+
+  <br/>
+  <a href="/todos">Go To TODOS</a>
+</div>

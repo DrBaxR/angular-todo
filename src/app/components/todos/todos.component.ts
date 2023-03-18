@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { Todo } from 'src/app/model/todo.model';
-import { ThemeService } from 'src/app/services/theme.service';
 import { TodosService } from 'src/app/services/todos.service';
 
 @Component({
@@ -12,16 +10,34 @@ import { TodosService } from 'src/app/services/todos.service';
 })
 export class TodosComponent implements OnInit {
   title = 'angular-todo';
-  todos$?: Observable<Todo[]>;
+  todos: Todo[] = [];
 
-  constructor(
-    public todosService: TodosService,
-    private router: Router
-  ) {}
+  showCreateForm = false;
+  errorMessage = '';
+
+  constructor(public todosService: TodosService, private router: Router) {
+  }
 
   ngOnInit(): void {
-    this.todos$ = this.todosService.todos$;
-    this.todosService.getAll();
+    this.todosService.getAll().subscribe({
+      next: (todos) => {
+        this.todos = todos;
+      },
+      error: (err) => {
+        this.errorMessage = err.message;
+      }
+    })
+  }
+
+  handleDelete(title: string) {
+    this.todosService.delete(title).subscribe({
+      next: () => {
+        this.todos = this.todos.filter(todo => todo.title !== title);
+      },
+      error: (err) => {
+        this.errorMessage = err.message;
+      }
+    })
   }
 
   handleEdit(id: number) {
@@ -29,7 +45,15 @@ export class TodosComponent implements OnInit {
   }
 
   createTodo() {
-    // TODO: creation flow: this can be either showing a form on the same page as the todo entries OR reusing the edit page
-    console.log('Implement me!');
+    this.showCreateForm = true;
+  }
+
+  handleCreateCancel() {
+    this.showCreateForm = false;
+  }
+
+  handleCreate(todo: Todo) {
+    this.showCreateForm = false;
+    this.todos.push(todo);
   }
 }
