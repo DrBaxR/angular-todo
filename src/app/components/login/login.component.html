@@ -1,0 +1,20 @@
+<form class="wrapper"
+      [formGroup]="formGroup"
+      (submit)="handleSubmit()">
+  <div class="field">
+    <label for="username">Username:</label>
+    <input id="username"
+           type="text"
+           formControlName="username">
+  </div>
+  <div class="field">
+    <label for="password">Password:</label>
+    <input id="password"
+           type="password"
+           formControlName="password">
+  </div>
+  <button class="submit-button"
+          type="submit">
+    Submit
+  </button>
+</form>

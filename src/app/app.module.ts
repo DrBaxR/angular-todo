@@ -12,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TodoCreateComponent } from './components/todo-create/todo-create.component';
 import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './components/login/login.component';
 
 export const BASE_URL = new InjectionToken<string>('BaseUrl');
 
@@ -23,7 +24,8 @@ export const BASE_URL = new InjectionToken<string>('BaseUrl');
     TodosComponent,
     TodoEditComponent,
     TodoFormComponent,
-    TodoCreateComponent
+    TodoCreateComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

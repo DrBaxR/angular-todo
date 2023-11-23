@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Todo } from 'src/app/model/todo.model';
+import { AuthService } from 'src/app/services/auth.service';
 import { ThemeService } from 'src/app/services/theme.service';
 import { TodosService } from 'src/app/services/todos.service';
 
