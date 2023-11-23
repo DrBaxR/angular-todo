@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map, Observable, of } from 'rxjs';
+import { BehaviorSubject, map, Observable, of } from 'rxjs';
 import { Todo } from 'src/app/model/todo.model';
 import { TodosService } from 'src/app/services/todos.service';
 
@@ -11,7 +11,7 @@ import { TodosService } from 'src/app/services/todos.service';
 })
 export class TodoEditComponent implements OnInit {
 
-  protected todo$!: Observable<Todo | undefined>;
+  protected todo$: Observable<Todo | undefined> = new BehaviorSubject<Todo | undefined>(undefined);
 
   constructor(
     private router: Router,
@@ -20,16 +20,13 @@ export class TodoEditComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.todosService.getAll();
-
     const stringId = this.route.snapshot.paramMap.get("id");
+    this.todo$.subscribe(todo => console.log(todo));
 
     if (stringId) {
       const id = Number.parseInt(stringId);
 
-      this.todo$ = this.todosService.todos$.pipe(
-        map(todos => todos.find(t => t.id === id))
-      );
+      this.todo$ = this.todosService.getOne(id);
     } else {
       this.todo$ = of(undefined);
     }

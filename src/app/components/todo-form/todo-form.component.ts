@@ -29,14 +29,18 @@ export class TodoFormComponent implements OnChanges {
     }
   }
 
-  private formatDate(date: Date): string {
-    var mm = date.getMonth() + 1;
-    var dd = date.getDate();
+  private formatDate(date?: Date): string | undefined {
+    if (date) {
+      var mm = date.getMonth() + 1;
+      var dd = date.getDate();
 
-    return [date.getFullYear(),
-    (mm > 9 ? '' : '0') + mm,
-    (dd > 9 ? '' : '0') + dd
-    ].join('-');
+      return [date.getFullYear(),
+      (mm > 9 ? '' : '0') + mm,
+      (dd > 9 ? '' : '0') + dd
+      ].join('-');
+    }
+
+    return undefined;
   }
 
   protected handleSubmit() {

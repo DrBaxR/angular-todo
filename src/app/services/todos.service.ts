@@ -1,41 +1,50 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, delay, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { Todo } from '../model/todo.model';
-import { todos } from '../model/todos.mock';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodosService {
 
-  private data: Todo[] = todos;
+  private data: Todo[] = [];
 
   private todosSubject: BehaviorSubject<Todo[]> = new BehaviorSubject<Todo[]>([]);
-  todos$: Observable<Todo[]> = this.todosSubject.asObservable().pipe(delay(500));
+  todos$: Observable<Todo[]> = this.todosSubject.asObservable();
 
-  constructor() { }
+  constructor(
+    private http: HttpClient,
+  ) { }
 
   getAll() {
-    this.todosSubject.next(this.data);
+    this.http.get<Todo[]>(`${environment.baseUrl}/todos`).subscribe(todos => {
+      this.data = todos;
+      this.todosSubject.next(this.data);
+    })
+  }
+
+  getOne(id: number): Observable<Todo> {
+    return this.http.get<Todo>(`${environment.baseUrl}/todos/${id}`).pipe(
+      map(todo => {
+        return {
+          ...todo,
+          dueDate: new Date(todo.dueDate)
+        }
+      })
+    );
   }
 
   delete(id: number) {
-    this.data = this.data.filter(todo => todo.id != id);
-    this.todosSubject.next(this.data);
+    this.http.delete(`${environment.baseUrl}/todos/${id}`).subscribe(() => this.getAll());
   }
 
   update(newValue: Todo) {
-    const otherTodos = this.data.filter(todo => todo.id != newValue.id);
-    this.data = [newValue, ...otherTodos];
-    this.todosSubject.next(this.data);
+    this.http.put(`${environment.baseUrl}/todos/${newValue.id}`, newValue).subscribe(() => this.getAll());
   }
 
   create(todo: Todo) {
-    let nextId = 0;
-    this.data.forEach(todo => { if (todo.id > nextId) { nextId = todo.id } });
-    todo.id = nextId + 1;
-
-    this.data.push(todo);
-    this.todosSubject.next(this.data);
+    this.http.post(`${environment.baseUrl}/todos`, todo).subscribe(() => this.getAll());
   }
 }
