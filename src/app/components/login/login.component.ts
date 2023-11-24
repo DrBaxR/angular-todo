@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -17,9 +18,14 @@ export class LoginComponent {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
+    private router: Router,
   ) { }
 
   handleSubmit() {
-    this.authService.login(this.formGroup.value.username!, this.formGroup.value.password!).subscribe();
+    this.authService.login(this.formGroup.value.username!, this.formGroup.value.password!).subscribe(
+      () => {
+        this.router.navigate(['/todos']);
+      }
+    );
   }
 }

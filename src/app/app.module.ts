@@ -11,8 +11,9 @@ import { TodoFormComponent } from './components/todo-form/todo-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TodoCreateComponent } from './components/todo-create/todo-create.component';
 import { environment } from 'src/environments/environment';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
+import { authInterceptor } from './interceptor/auth.interceptor';
 
 export const BASE_URL = new InjectionToken<string>('BaseUrl');
 
@@ -31,10 +32,12 @@ export const BASE_URL = new InjectionToken<string>('BaseUrl');
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule,
   ],
   providers: [
-    { provide: BASE_URL, useValue: environment.baseUrl }
+    provideHttpClient(
+      withInterceptors([authInterceptor])
+    ),
+    { provide: BASE_URL, useValue: environment.baseUrl },
   ],
   bootstrap: [AppComponent]
 })

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 
@@ -20,8 +21,17 @@ interface TokenResponse {
 })
 export class AuthService {
 
+  get isLoggedIn(): boolean {
+    return !!localStorage.getItem('access_token');
+  }
+
+  get accessToken(): string | null {
+    return localStorage.getItem('access_token');
+  }
+
   constructor(
-    private httpService: HttpClient
+    private httpService: HttpClient,
+    private router: Router,
   ) { }
 
   login(username: string, password: string): Observable<TokenResponse> {
@@ -40,4 +50,10 @@ export class AuthService {
         })
       );
   }
+
+  logout(): void {
+    localStorage.removeItem('access_token');
+    this.router.navigate(['/login']);
+  }
+
 }
